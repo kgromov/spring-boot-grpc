@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "HelloWorldProto";
+option java_package = "com.kgromov.grpc.proto";
+//package com.kgromov.grpc.proto;
+
+service HelloWorldService {
+  rpc request(HelloWorldRequest) returns (HelloWorldResponse) {}
+}
+
+message HelloWorldRequest {
+  string requestId = 1;
+  string message = 2;
+}
+
+message HelloWorldResponse {
+  string status = 1;
+}
