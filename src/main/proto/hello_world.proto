@@ -7,6 +7,8 @@ option java_package = "com.kgromov.grpc.proto";
 
 service HelloWorldService {
   rpc request(HelloWorldRequest) returns (HelloWorldResponse) {}
+
+  rpc streamRequest(HelloWorldRequest) returns (stream HelloWorldResponse) {}
 }
 
 message HelloWorldRequest {

@@ -17,4 +17,24 @@ public class HelloWorldService extends HelloWorldServiceGrpc.HelloWorldServiceIm
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
+
+    @Override
+    public void streamRequest(HelloWorldRequest request, StreamObserver<HelloWorldResponse> responseObserver) {
+        int count = 0;
+        while (count < 10) {
+            HelloWorldResponse response = HelloWorldResponse.newBuilder()
+                    .setStatus("Hello(" + count + ") ==> " + request.getRequestId() + ": " + request.getMessage())
+                    .build();
+            responseObserver.onNext(response);
+            count++;
+            try {
+                Thread.sleep(1000L);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                responseObserver.onError(e);
+                return;
+            }
+        }
+        responseObserver.onCompleted();
+    }
 }
