@@ -16,7 +16,7 @@ public class SpringBootGrpcApplication {
         SpringApplication.run(SpringBootGrpcApplication.class, args);
     }
 
-    @Bean
+//    @Bean
     ApplicationRunner clientRunner(HelloWorldServiceGrpc.HelloWorldServiceBlockingStub helloClient) {
         return args -> {
             var request = HelloWorldRequest.newBuilder()
