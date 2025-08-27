@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.grpc.autoconfigure.server.GrpcServerProperties;
 
 import java.util.Random;
@@ -18,7 +19,7 @@ public class SpringBootGrpcApplication {
         SpringApplication.run(SpringBootGrpcApplication.class, args);
     }
 
-//    @Bean
+    @Bean
     ApplicationRunner clientRunner(HelloWorldServiceGrpc.HelloWorldServiceBlockingStub helloClient) {
         return args -> {
             var request = HelloWorldRequest.newBuilder()
