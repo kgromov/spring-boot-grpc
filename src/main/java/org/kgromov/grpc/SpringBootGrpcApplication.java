@@ -5,10 +5,12 @@ import com.kgromov.grpc.proto.HelloWorldServiceGrpc;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.grpc.autoconfigure.server.GrpcServerProperties;
 
 import java.util.Random;
 
+@EnableConfigurationProperties(GrpcServerProperties.class)
 @SpringBootApplication
 public class SpringBootGrpcApplication {
 

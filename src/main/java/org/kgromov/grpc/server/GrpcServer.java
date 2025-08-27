@@ -4,10 +4,12 @@ import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerServiceDefinition;
+import io.grpc.protobuf.services.ProtoReflectionService;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.grpc.autoconfigure.server.GrpcServerProperties;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,11 +21,8 @@ public class GrpcServer {
 
     private final Server server;
 
-    @Value("${grpc.server.port:6565}")
-    private int grpcPort;
-
-    public GrpcServer( BindableService... services) {
-        ServerBuilder<?> serverBuilder = ServerBuilder.forPort(grpcPort);
+    public GrpcServer(GrpcServerProperties serverProperties, BindableService... services) {
+        ServerBuilder<?> serverBuilder = ServerBuilder.forPort(serverProperties.getPort());
         List.of(services).forEach(serverBuilder::addService);
         this.server = serverBuilder.build();
     }
@@ -31,7 +30,7 @@ public class GrpcServer {
     @PostConstruct
     public void start() throws IOException {
         this.server.start();
-        log.info("gRPC server started on port: {}", grpcPort);
+        log.info("gRPC server started on port: {}", server.getPort());
     }
 
     @PreDestroy
