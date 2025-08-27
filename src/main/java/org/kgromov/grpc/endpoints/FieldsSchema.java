@@ -2,13 +2,11 @@ package org.kgromov.grpc.endpoints;
 
 import lombok.*;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class MessageSchema {
+public class FieldsSchema {
+    private String name;
     private String type;
-    private List<FieldsSchema> fields;
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class MessageSchema {
-    private String type;
-    private List<FieldsSchema> fields;
+public class ServiceMethods {
+    private String name;
+    private List<MethodSchema> methods;
 }
