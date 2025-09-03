@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static java.util.Optional.ofNullable;
+
 @Component
 @Endpoint(id = "grpc-message-metadata")
 @Slf4j
@@ -26,13 +28,20 @@ public class GrpcMessageMetadataEndpoint {
     @ReadOperation
     public MessageSchema messageSchema(@Selector String messageType) {
         Class<?> messageClass = Class.forName(messageType);
+        Map<String, String> fieldsByType = this.analyzeType(messageClass);
         var fields = Stream.of(messageClass.getDeclaredFields())
                 .filter(field -> !Modifier.isStatic(field.getModifiers()))
                 .filter(field -> !field.getName().equals("memoizedIsInitialized"))
-                .map(field -> FieldSchema.builder().name(field.getName()).type(field.getType().getTypeName()).build())
+                .map(field -> {
+                    String correlatedFieldName = field.getName().substring(0, field.getName().length() - 1);
+                    String fieldName = fieldsByType.containsKey(correlatedFieldName)
+                            ? correlatedFieldName
+                            : field.getName();
+                    String type =  ofNullable(fieldsByType.get(fieldName))
+                            .orElse(field.getType().getTypeName());
+                    return FieldSchema.builder().name(fieldName).type(type).build();
+                })
                 .toList();
-        // TODO: match
-        Map<String, String> fieldsByType = this.analyzeType(messageClass);
         return MessageSchema.builder()
                 .type(messageClass.getTypeName())
                 .fields(fields)
