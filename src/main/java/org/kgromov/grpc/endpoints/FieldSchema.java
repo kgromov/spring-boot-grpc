@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class FieldsSchema {
+public class FieldSchema {
     private String name;
     private String type;
 }
