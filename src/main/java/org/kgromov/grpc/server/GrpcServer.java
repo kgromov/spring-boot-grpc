@@ -8,11 +8,13 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.grpc.server.autoconfigure.GrpcServerProperties;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 
+@Profile("!test")
 @Slf4j
 @Component
 public class GrpcServer {

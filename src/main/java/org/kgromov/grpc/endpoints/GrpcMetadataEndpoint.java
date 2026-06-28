@@ -9,11 +9,13 @@ import org.kgromov.grpc.server.GrpcServer;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
 
+@Profile("!test")
 @Component
 @Endpoint(id = "grpc-metadata")
 @Slf4j
