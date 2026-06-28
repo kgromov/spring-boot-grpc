@@ -8,9 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.grpc.server.autoconfigure.GrpcServerProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.grpc.client.ImportGrpcClients;
 
 import java.util.Random;
 
+@ImportGrpcClients(target = "local", types = HelloWorldServiceGrpc.HelloWorldServiceBlockingStub.class)
 @EnableConfigurationProperties({GrpcServerProperties.class})
 @SpringBootApplication
 public class SpringBootGrpcApplication {
@@ -27,7 +29,7 @@ public class SpringBootGrpcApplication {
                     .setMessage("Konstantin")
                     .build();
             var reply = helloClient.request(request);
-            System.out.println(reply.toString());
+            System.out.println("Received:\n" + reply.toString());
         };
     }
 }

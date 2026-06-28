@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.grpc.client.GrpcChannelFactory;
 import org.springframework.grpc.client.ImportGrpcClients;
 
-@Profile("default")
+@Profile("default-redundant")
 @ImportGrpcClients(target = "local", types = HelloWorldServiceGrpc.HelloWorldServiceBlockingStub.class)
 @Configuration
 public class DefaultClientConfig {
