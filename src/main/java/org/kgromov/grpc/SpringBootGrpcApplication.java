@@ -13,6 +13,8 @@ import org.springframework.grpc.client.ImportGrpcClients;
 import java.util.Random;
 
 @ImportGrpcClients(target = "local", types = HelloWorldServiceGrpc.HelloWorldServiceBlockingStub.class)
+// to import all stubs from the proto package with default binding address
+//@ImportGrpcClients(basePackages = "org.kgromov.grpc.proto ")
 @EnableConfigurationProperties({GrpcServerProperties.class})
 @SpringBootApplication
 public class SpringBootGrpcApplication {
