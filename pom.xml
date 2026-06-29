@@ -16,9 +16,6 @@
 
     <properties>
         <java.version>25</java.version>
-        <grpc.version>1.82.1</grpc.version>
-        <protobuf-java.version>4.30.2</protobuf-java.version>
-        <spring-grpc.version>0.10.0</spring-grpc.version>
     </properties>
 
     <dependencies>
@@ -63,11 +60,6 @@
             <artifactId>spring-boot-starter-grpc-server-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-grpc-client-test</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -75,26 +67,6 @@
             <plugin>
                 <groupId>io.github.ascopes</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
-<!--                <version>5.1.6</version>-->
-<!--                <configuration>-->
-<!--                    <protocVersion>${protobuf-java.version}</protocVersion>-->
-<!--                    <binaryMavenPlugins>-->
-<!--                        <binaryMavenPlugin>-->
-<!--                            <groupId>io.grpc</groupId>-->
-<!--                            <artifactId>protoc-gen-grpc-java</artifactId>-->
-<!--                            <version>${grpc.version}</version>-->
-<!--                            <options>@generated=omit</options>-->
-<!--                        </binaryMavenPlugin>-->
-<!--                    </binaryMavenPlugins>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>generate</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
